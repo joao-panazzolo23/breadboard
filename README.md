@@ -10,11 +10,15 @@ To start a local development server, run:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+To start a local development desktop app powered with Electron, run:
+
+```bash
+ng start
+```
 
 ## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+To generate a new component, run:
 
 ```bash
 ng generate component component-name
@@ -33,6 +37,19 @@ To build the project run:
 ```bash
 ng build
 ```
+
+Remember, to generate Electron packages, ensure building assembly files using: 
+
+```bash
+ng build --base-href ./
+```
+
+or 
+
+```bash
+npm run build:electron 
+```
+this needs to change later, too much writing for only one command
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
