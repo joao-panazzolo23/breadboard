@@ -10,10 +10,10 @@ To start a local development server, run:
 ng serve
 ```
 
-To start a local development desktop app powered with Electron, run:
+To build and start a local development desktop app powered with Electron, run:
 
 ```bash
-ng start
+npm start
 ```
 
 ## Code scaffolding
@@ -37,19 +37,6 @@ To build the project run:
 ```bash
 ng build
 ```
-
-Remember, to generate Electron packages, ensure building assembly files using: 
-
-```bash
-ng build --base-href ./
-```
-
-or 
-
-```bash
-npm run build:electron 
-```
-this needs to change later, too much writing for only one command
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
