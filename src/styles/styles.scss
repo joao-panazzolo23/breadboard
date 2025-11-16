@@ -1,9 +1,23 @@
+:root {
+  --color-primary: #5c6bc0;
+  --color-bg: #ffffff;
+  --color-text: #222;
+  --space-sm: 4px;
+  --space-md: 8px;
+  --space-lg: 16px;
+}
+
+.dark-theme {
+  --color-bg: #1e1e1e;
+  --color-text: #eee;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: x-medium;
+  font-size: medium;
 }
 
 body {
@@ -47,7 +61,7 @@ li {
 
 li i {
   font-size: 18px; /* tamanho do ícone */
-  color: #333; /* opcional */
+  color: #333;
 }
 
 li a {
@@ -55,3 +69,13 @@ li a {
   color: inherit;
   font-size: 16px;
 }
+
+.svg {
+  width: 13px;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  fill: white;
+  transition-duration: .3s;
+}
+

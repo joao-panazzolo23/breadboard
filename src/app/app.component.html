@@ -1,11 +1,24 @@
-<app-sidebar> </app-sidebar>
-<!-- isso vai ser removido depois -->
+<app-sidebar></app-sidebar>
+<!-- isso vai ser removido ou aprofundado depois -->
 <div class="title">
   <h1>
     Welcome to
     <strong class="cursive-title">Bread </strong>
     <span style="font-family: Consolas"> board </span>
   </h1>
+
+  <br>
+  <div class="row" style="gap: 1rem;display: flex">
+    <app-default-button> o texto aqui eh ignorado completamente</app-default-button>
+    <app-default-button [ButtonType]="ButtonTypes.Confirm"></app-default-button>
+    <app-default-button [ButtonType]="ButtonTypes.delete"></app-default-button>
+    <app-default-button [ButtonType]="ButtonTypes.edit"></app-default-button>
+    <app-default-button [ButtonType]="ButtonTypes.save"></app-default-button>
+    <app-default-button [ButtonType]="ButtonTypes.warning"></app-default-button>
+    <!--  <button class="btn btn&#45;&#45;blue"> Aceitar </button>-->
+  </div>
+
+
 </div>
 
 <router-outlet></router-outlet>
