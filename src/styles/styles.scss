@@ -21,9 +21,10 @@
 }
 
 body {
-  display: flex;
   min-height: 100vh;
   background-color: #e3e9f7;
+  margin: 0;
+  width: 100%;
 }
 
 main {

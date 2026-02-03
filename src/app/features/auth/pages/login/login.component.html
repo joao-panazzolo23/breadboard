@@ -1,23 +1,38 @@
 <form (ngSubmit)="login()" #f="ngForm">
 
-  <h2>Entrar</h2>
+  <div class="card">
+      <h2>Entrar</h2>
+  </div>
 
-  <input
-    type="email"
-    name="email"
-    [(ngModel)]="email"
-    required
-  />
 
-  <input
-    type="password"
-    name="password"
-    [(ngModel)]="password"
-    required
-  />
 
-  <button class="btn--save" type="submit">
-    Login
-  </button>
+
+
+
+
+
+
+
+
+  <div class="card">
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="email"
+      required
+    />
+
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+      required
+    />
+
+    <button class="btn--save" type="submit">
+      Login
+    </button>
+  </div>
+
 
 </form>
