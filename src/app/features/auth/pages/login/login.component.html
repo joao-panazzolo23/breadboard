@@ -1,0 +1,23 @@
+<form (ngSubmit)="login()" #f="ngForm">
+
+  <h2>Entrar</h2>
+
+  <input
+    type="email"
+    name="email"
+    [(ngModel)]="email"
+    required
+  />
+
+  <input
+    type="password"
+    name="password"
+    [(ngModel)]="password"
+    required
+  />
+
+  <button class="btn--save" type="submit">
+    Login
+  </button>
+
+</form>
