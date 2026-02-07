@@ -1,17 +1,36 @@
-<div class="card">
+@let isPasswordValid = isFieldValid('password');
+@let isEmailValid = isFieldValid('email');
+
+<form class="card" [formGroup]="loginForm" (ngSubmit)="login()">
   <h1>Login</h1>
 
-  <div class="input-group">
-    <label for="email">Email</label>
-    <input class="input-text" type="email" id="email" placeholder="your@email.com">
+  <div class="form-content">
+    <div class="input-group">
+
+      <label for="email">Email</label>
+      <input class="input-text" type="email" id="email" placeholder="email@email.com"
+             formControlName="email"
+             [class.invalid]=isEmailValid>
+      @if (isEmailValid) {
+        <small class="error"> Digite seu email! </small>
+      }
+    </div>
+
+
+    <div class="input-group">
+      <label for="password">Senha</label>
+      <input class="input-text" type="password" id="password"
+             placeholder="••••••••" formControlName="password"
+             [class.invalid]=isPasswordValid
+      >
+      @if (isPasswordValid) {
+        <small class="error"> Digite sua senha! </small>
+      }
+    </div>
+
   </div>
 
-  <div class="input-group">
-    <label for="password">Senha</label>
-    <input class="input-text" type="password" id="password" placeholder="••••••••">
-  </div>
-
-  <button class="btn btn--accept" type="submit">SIGN IN</button>
+  <button class="btn btn--accept" type="submit" [disabled]="loginForm.invalid">Entrar</button>
 
   <div class="divider">OU</div>
 
@@ -30,4 +49,4 @@
   <div class="footer">
     Não tem uma conta? <a href="#">Registre-se</a>
   </div>
-</div>
+</form>

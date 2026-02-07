@@ -6,7 +6,6 @@ import {AuthGuard} from './core/guards/auth-guard.service';
 
 export const routes: Routes = [
 
-  // LOGIN (PÚBLICO)
   {
     path: 'login',
     component: AuthLayoutComponent,
@@ -33,7 +32,6 @@ export const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full'
       }
-
     ]
   },
 

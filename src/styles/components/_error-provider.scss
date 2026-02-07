@@ -1,0 +1,20 @@
+.error {
+  display: block;
+  margin-top: 5px;
+
+  color: var(--error);
+  font-size: 0.8rem;
+
+  opacity: 0;
+  transform: translateY(-5px);
+
+  animation: fadeInError 0.25s ease forwards;
+}
+
+@keyframes fadeInError {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

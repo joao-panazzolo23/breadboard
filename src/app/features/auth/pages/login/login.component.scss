@@ -23,7 +23,6 @@ label {
   color: var(--primary);
 }
 
-
 .social-login {
   display: flex;
   justify-content: center;
@@ -41,4 +40,10 @@ label {
   color: var(--primary);
   font-weight: bold;
   text-decoration: underline;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; // controla o espaçamento
 }

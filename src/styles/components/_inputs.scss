@@ -11,6 +11,11 @@
   &:focus {
     box-shadow: 4px 4px 0px var(--primary);
   }
+
+  &.invalid {
+    border: 1px solid #ff4d4f;
+    box-shadow: 4px 4px 0px var(--error);
+  }
 }
 
 
