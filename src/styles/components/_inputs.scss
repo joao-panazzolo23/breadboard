@@ -1,0 +1,17 @@
+.input-text {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--primary);
+  background-color: var(--secondary);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+  border-radius: 0.5rem;
+
+  &:focus {
+    box-shadow: 4px 4px 0px var(--primary);
+  }
+}
+
+
+

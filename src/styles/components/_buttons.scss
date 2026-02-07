@@ -1,0 +1,67 @@
+.btn {
+  width: 100%;
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+  background-color: var(--accent);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: color 0.3s ease,
+  transform 0.1s ease,
+  box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 0.5rem;
+
+  &:hover {
+    box-shadow: 3px 3px 0px var(--primary);
+    transform: translate(-1px, -1px);
+  }
+
+  &:active {
+    transform: scale(1.0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: scaleX(0) skewX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: 0;
+  }
+
+  &:hover::before {
+    transform: scaleX(0) skewX(-20deg);
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  &--small {
+    width: 50px;
+    height: 50px;
+  }
+
+  &--warning {
+    color: var(--warning);
+  }
+
+  &--accept {
+    color: var(--accept);
+  }
+
+  &--edit {
+    color: var(--edit);
+  }
+}

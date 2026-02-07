@@ -1,0 +1,13 @@
+:root {
+  --primary: var(--black);
+  --secondary: var(--white);
+  --accent: var(--white);
+  --bg: var(--white);
+
+}
+
+[data-theme="dark"] {
+  --bg: #020617;
+  --text: #f8fafc;
+  --primary: #009bdc;
+}
