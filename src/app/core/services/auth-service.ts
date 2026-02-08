@@ -1,16 +1,19 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {environment} from '../../../enviroments/environment';
 import {LoginResponse} from '../interfaces/login-response.interface';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
+  private readonly url = environment.url;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  login(email: string, password: string) : Observable<LoginResponse> {
-    return this.http.post<LoginResponse>('API_URL/login', {
+  login(email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.url}/login`, {
       email,
       password
     });

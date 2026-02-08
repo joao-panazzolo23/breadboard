@@ -6,38 +6,38 @@ import {AuthGuard} from './core/guards/auth-guard.service';
 
 export const routes: Routes = [
 
+  // LOGIN
   {
-    path: 'login',
+    path: '',
     component: AuthLayoutComponent,
-    loadChildren: () =>
-      import('./features/auth/auth.module')
-        .then(m => m.AuthModule)
+    children: [
+      {
+        path: 'login',
+        loadChildren: () =>
+          import('./features/auth/auth-routing.module')
+            .then(m => m.AuthRoutingModule)
+      }
+    ]
   },
 
+  // SISTEMA
   {
     path: '',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-
-      // {
-      //   path: 'dashboard',
-      //   loadChildren: () =>
-      //     import('./features/dashboard/dashboard.module')
-      //       .then(m => m.DashboardModule)
-      // },
-
       {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
+        path: 'home',
+        loadChildren: () =>
+          import('./features/home/routes/home-route')
+            .then(m => m.HomeRoutes)
       }
     ]
   },
 
-  {path: '**', redirectTo: 'login'}
-];
+  { path: '**', redirectTo: 'login' }
 
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

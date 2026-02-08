@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {AuthService} from '../../../../core/services/auth-service';
 import {Observable} from 'rxjs';
 import {LoginResponse} from '../../../../core/interfaces/login-response.interface';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,9 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private router: Router,
+  ) {
 
     this.loginForm = this.createLoginForm();
   }
@@ -34,13 +37,19 @@ export class LoginComponent {
 
   public login() {
     debugger
-    console.log("chegou")
     if (this.loginForm.invalid) return;
+    this.router.navigateByUrl('/home').then(r => {
+      if (!r) console.log("deu merda");
+    })
 
-    const {email, password} = this.loginForm.getRawValue();
-    this.login$ = this.authService.login(
-      email, password
-    );
+
+    //todo: implementar o serviço de token
+    // const {email, password} = this.loginForm.getRawValue();
+    // this.authService.login(
+    //   email, password
+    // ).subscribe(() => {
+    //   this.router.navigateByUrl('/home')
+    // });
   }
 
   protected isFieldValid(field: string) {
