@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {environment} from '../../../enviroments/environment';
 import {LoginResponse} from '../interfaces/login-response.interface';
 
@@ -13,6 +13,15 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<LoginResponse> {
+    if (!environment.production) {
+      const mockResponse: LoginResponse = {
+        token: 'mock-token'
+      } as LoginResponse;
+
+      this.setToken(mockResponse.token);
+      return of(mockResponse);
+    }
+
     return this.http.post<LoginResponse>(`${this.url}/login`, {
       email,
       password

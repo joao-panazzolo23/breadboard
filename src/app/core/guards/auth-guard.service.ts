@@ -1,4 +1,4 @@
-import {CanActivate, CanActivateFn, Router} from '@angular/router';
+import {CanActivate, Router, UrlTree} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {AuthService} from '../services/auth-service';
 
@@ -10,13 +10,12 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(): boolean {
+  canActivate(): boolean | UrlTree {
 
     if (this.auth.isLogged()) {
       return true;
     }
-
-    this.router.navigate(['/login']);
-    return false;
+    //Creating trees creates an internal representation of the routing to where angular routing should go
+    return this.router.createUrlTree(['/login']);
   }
 }

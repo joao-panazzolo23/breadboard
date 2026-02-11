@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth-service';
-import {Observable} from 'rxjs';
-import {LoginResponse} from '../../../../core/interfaces/login-response.interface';
 import {Router} from '@angular/router';
 
 @Component({
@@ -16,13 +14,13 @@ import {Router} from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  private login$!: Observable<LoginResponse>;
+  // private login$!: Observable<LoginResponse>;
   protected loginForm!: FormGroup;
 
   constructor(
-    private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
+    private authService: AuthService,
   ) {
 
     this.loginForm = this.createLoginForm();
@@ -36,20 +34,17 @@ export class LoginComponent {
   }
 
   public login() {
-    debugger
+    this.loginForm.markAllAsTouched();
+
     if (this.loginForm.invalid) return;
-    this.router.navigateByUrl('/home').then(r => {
-      if (!r) console.log("deu merda");
-    })
 
+    const {email, password} = this.loginForm.getRawValue();
 
-    //todo: implementar o serviço de token
-    // const {email, password} = this.loginForm.getRawValue();
-    // this.authService.login(
-    //   email, password
-    // ).subscribe(() => {
-    //   this.router.navigateByUrl('/home')
-    // });
+    this.authService.login(email, password)
+      .subscribe({
+        next: () => this.router.navigate(['/home']),
+        error: () => console.log('login failed')
+      });
   }
 
   protected isFieldValid(field: string) {

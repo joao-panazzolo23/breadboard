@@ -5,7 +5,11 @@ import {NgModule} from '@angular/core';
 import {AuthGuard} from './core/guards/auth-guard.service';
 
 export const routes: Routes = [
-
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
   // LOGIN
   {
     path: '',
@@ -20,7 +24,6 @@ export const routes: Routes = [
     ]
   },
 
-  // SISTEMA
   {
     path: '',
     component: MainLayoutComponent,
@@ -35,7 +38,7 @@ export const routes: Routes = [
     ]
   },
 
-  { path: '**', redirectTo: 'login' }
+  {path: '**', redirectTo: 'login'}
 
 ];
 
