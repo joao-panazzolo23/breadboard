@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {SidebarComponent} from '../../sidebar/sidebar.component';
 import {RouterOutlet} from '@angular/router';
 
@@ -12,5 +12,9 @@ import {RouterOutlet} from '@angular/router';
   styleUrl: './main-layout.component.scss',
 })
 export class MainLayoutComponent {
+  protected isSidebarExpanded: boolean = false;
 
+  toggleSidebar() {
+    this.isSidebarExpanded = !this.isSidebarExpanded;
+  }
 }

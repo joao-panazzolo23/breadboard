@@ -1,64 +1,52 @@
-<input type="checkbox" id="menu" name="menu" class="menu-checkbox" />
+<aside class="sidebar" [class.collapsed]="!expanded">
+  <div class="sidebar__top" (click)="toggle.emit()">
+    <a class="material-symbols-outlined" >
+      {{ expanded ? 'menu_open' : 'menu' }}
+    </a>
+  </div>
 
-<!-- spa q eu posso trocar esses icones pelos do google fonts pra ficar mais legal
- testar dps 
- https://fonts.google.com/icons?hl=pt-br
- 
- -->
-<aside class="menu">
-  <label class="menu-toggle" for="menu"><span>Toggle</span></label>
-  <ul>
-    <li>
-      <i class="fa-regular fa-money-bill-1 fa-2x"></i>
-      <a href="#"> <strong>Vendas </strong></a>
-    </li>
+  <ul class="menu">
+    @for (item of items; track item.route) {
+      <li class="menu-item" (click)="toggleItem(item)">
+        <div class="menu-item__content">
+          <span class="material-symbols-outlined">
+            {{ item.icon }}
+          </span>
 
-    <!-- <li> depois eu faco esses aqui
-      <i class=""> </i>
-      <a href="#"> <strong>Orçamentos</strong></a>
-    </li> -->
-
-    <!-- <li> 
-      <i class="fa-regular fa-credit-card fa-2x"></i>
-      <a href="#"> <strong>Pedidos</strong></a>
-    </li> -->
-
-    <li>
-      <i class="fa-regular fa-chart-bar fa-2x"></i>
-      <a href="#"> <strong> Relatórios </strong></a>
-    </li>
-
-    <li>
-      <i class="fa-regular fa-bell fa-2x"></i>
-      <a href="#"> <strong> Pedidos </strong></a>
-    </li>
-
-    <!-- isso aqui ficou uma merda, repensar como fazer melhor
-     
-    minha ideia eh abrir um submenu com dropdown list quando clicar no botao 
-    
-    -->
-    <!-- <ul>
-      <li>
-        <div class="menu-item" (click)="toggleMenu('financials')">
-          <i class="fa-solid fa-money-bill"></i>
-          <span>Financeiro</span>
-          <i
-            class="fa-solid"
-            [ngClass]="{
-              'fa-chevron-down': !isMenuOpen('financeiro'),
-              'fa-chevron-up': isMenuOpen('financeiro')
-            }"
-          ></i>
+          @if (expanded) {
+            <span class="label">
+              {{ item.label }}
+            </span>
+          }
         </div>
 
-        <ul class="submenu" *ngIf="isMenuOpen('financeiro')">
-          <li><a href="#">Menu-5-1</a></li>
-          <li><a href="#">Menu-5-2</a></li>
-          <li><a href="#">Menu-5-3</a></li>
-          <li><a href="#">Menu-5-4</a></li>
-        </ul>
+        <!-- Item children -->
+        @if (item.children && item.expanded) {
+          <ul class="submenu">
+            @for (child of item.children; track child.route) {
+              <li class="submenu-item">
+                <a [routerLink]="child.route">
+                  {{ child.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        }
       </li>
-    </ul> -->
+    }
   </ul>
+
+  <div class="sidebar__bottom">
+    <div class="logout-button" (click)="logout()">
+      <span class="material-symbols-outlined">
+        logout
+      </span>
+
+      @if (expanded) {
+        <span class="label">
+          Sair
+        </span>
+      }
+    </div>
+  </div>
 </aside>

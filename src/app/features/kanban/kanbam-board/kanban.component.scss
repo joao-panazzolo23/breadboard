@@ -1,0 +1,58 @@
+.kanban-board {
+  width: 100%;
+  height: 100vh;
+  background-color: #000000;
+  padding: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &__header {
+    width: 100%;
+    padding: 2rem 0;
+    border-bottom: 6px solid #ffffff;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-family: 'Jetbrains Mono', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__columns {
+    display: flex;
+    gap: 2rem;
+    height: calc(100vh - 180px);
+    align-items: flex-start;
+    min-width: min-content;
+  }
+}
+
+// Drag and Drop CDK Overrides - Brutalist style
+::ng-deep {
+  .cdk-drag-preview {
+    opacity: 1 !important;
+    box-shadow: 8px 8px 0 0 #ffffff !important;
+    transform: rotate(-2deg) !important;
+    transition: none !important;
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0.3 !important;
+    border: 4px dashed #ffffff !important;
+    background-color: transparent !important;
+  }
+
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1) !important;
+  }
+
+  .cdk-drop-list-dragging .cdk-drag {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1) !important;
+  }
+}

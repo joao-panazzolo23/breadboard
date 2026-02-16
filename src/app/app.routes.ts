@@ -34,6 +34,12 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/home/routes/home-route')
             .then(m => m.HomeRoutes)
+      },
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('./features/kanban/routes/order-routes.module')
+            .then(m => m.OrderRoutesModule)
       }
     ]
   },

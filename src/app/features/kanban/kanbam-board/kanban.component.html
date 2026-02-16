@@ -1,0 +1,17 @@
+<div class="kanban-board">
+  <div class="kanban-board__header">
+    <h1 class="kanban-board__title">
+      Pedidos
+    </h1>
+  </div>
+
+  <div class="kanban-board__columns">
+    @for (column of columns; track column.id) {
+      <app-kanban-column
+        [column]="column"
+        [connectedTo]="getConnectedLists()"
+        (cardDropped)="drop($event)">
+      </app-kanban-column>
+    }
+  </div>
+</div>

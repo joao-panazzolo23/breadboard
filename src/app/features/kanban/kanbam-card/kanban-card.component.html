@@ -1,0 +1,25 @@
+<div class="kanban-card">
+  <div class="kanban-card__header">
+    <h3 class="kanban-card__title">{{ card.title }}</h3>
+    @if (card.priority) {
+      <span
+        class="kanban-card__priority"
+        [style.background-color]="getPriorityColor()">
+        {{ getPriorityLabel() }}
+      </span>
+    }
+  </div>
+
+  @if (card.description) {
+    <div class="kanban-card__body">
+      <p class="kanban-card__description">{{ card.description }}</p>
+    </div>
+  }
+
+  <div class="kanban-card__footer">
+    <span class="kanban-card__id">#{{ card.id }}</span>
+    <button class="kanban-card__action" type="button">
+      <span class="material-symbols-outlined">more_horiz</span>
+    </button>
+  </div>
+</div>

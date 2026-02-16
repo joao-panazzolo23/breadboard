@@ -1,0 +1,29 @@
+<div class="kanban-column">
+  <div class="kanban-column__header">
+    <h2 class="kanban-column__title">{{ column.title }}</h2>
+    <span class="kanban-column__count">{{ column.cards.length }}</span>
+  </div>
+
+  <div
+    class="kanban-column__cards"
+    cdkDropList
+    [id]="column.id"
+    [cdkDropListData]="column.cards"
+    [cdkDropListConnectedTo]="connectedTo"
+    (cdkDropListDropped)="onDrop($event)">
+
+    @for (card of column.cards; track card.id) {
+      <app-kanban-card
+        [card]="card"
+        cdkDrag>
+      </app-kanban-card>
+    }
+
+    @if (column.cards.length === 0) {
+      <div class="kanban-column__empty">
+        <span class="material-symbols-outlined">inbox</span>
+        <p>VAZIO</p>
+      </div>
+    }
+  </div>
+</div>

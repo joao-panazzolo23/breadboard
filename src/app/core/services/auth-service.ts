@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable, of, tap} from 'rxjs';
 import {environment} from '../../../enviroments/environment';
 import {LoginResponse} from '../interfaces/login-response.interface';
 
@@ -13,19 +13,19 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<LoginResponse> {
+    //todo: find a better way to mock this
     if (!environment.production) {
-      const mockResponse: LoginResponse = {
-        token: 'mock-token'
-      } as LoginResponse;
-
-      this.setToken(mockResponse.token);
-      return of(mockResponse);
+      return of({token: 'mock-token'} as LoginResponse).pipe(
+        tap(response => this.setToken(response.token))
+      );
     }
 
     return this.http.post<LoginResponse>(`${this.url}/login`, {
       email,
       password
-    });
+    }).pipe(
+      tap(response => this.setToken(response.token))
+    );
   }
 
   setToken(token: string) {

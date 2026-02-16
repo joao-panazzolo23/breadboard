@@ -14,7 +14,6 @@ import {Router} from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  // private login$!: Observable<LoginResponse>;
   protected loginForm!: FormGroup;
 
   constructor(
