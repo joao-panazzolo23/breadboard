@@ -10,15 +10,26 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: none;
   overflow-x: hidden;
-  border-right: 4px solid var(--primary);
-  //box-shadow: 8px 0 0 0 #000000;
+  border-right: 1px solid var(--primary);
+  border-radius: 1.5rem;
+  transition: ease-in-out 150ms;
+
+
+  &-inside {
+    padding-right: 0.3rem;
+    box-shadow: inset -3px 0 0 0 var(--primary);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
   &.collapsed {
     width: 70px;
   }
 
+  //TODO: ESSA DIAMBA AQ N FICA NO START ALINHADO COM O RESTO DOS ICONS
   &__top {
     width: 100%;
     height: 60px;
@@ -40,7 +51,7 @@
       align-items: center;
       justify-content: center;
       color: var(--primary);
-      font-weight: 500;
+      font-weight: 100;
       font-size: 28px;
     }
   }
@@ -54,52 +65,57 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.menu-item {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  transition: none;
-  border-bottom: 2px solid #ffffff;
-
-  &:hover {
-    background-color: #ffffff;
-    color: #000000;
-
-    .material-symbols-outlined,
-    .label {
-      color: #000000;
-    }
-  }
-
-  &__content {
+  &-item {
     width: 100%;
-    height: 60px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 0 1rem;
-    font-weight: 700;
-  }
+    cursor: pointer;
+    transition: none;
+    border-bottom: 2px solid var(--secondary);
 
-  .material-symbols-outlined {
-    font-size: 28px;
-    flex-shrink: 0;
-    font-weight: 700;
-  }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      //color: #000000;
 
-  .label {
-    font-family: 'Jetbrains Mono', monospace;
-    white-space: nowrap;
-    flex: 1;
-    text-align: left;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 1px;
+      //.material-symbols-outlined,
+      //.label {
+      //  color: #000000;
+      //}
+    }
+
+    &__content {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 1rem;
+      font-weight: 700;
+      border-radius: 3rem;
+
+      &:hover {
+        background-color: var(--shadow);
+      }
+    }
+
+    .material-symbols-outlined {
+      font-size: 1.7rem;
+      flex-shrink: 0;
+      font-weight: 300;
+    }
+
+    .label {
+      font-family: 'Jetbrains Mono', monospace;
+      white-space: nowrap;
+      flex: 1;
+      text-align: left;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
   }
 }
 
@@ -116,7 +132,7 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--secondary);
   border-top: 2px solid #000000;
 
   &-item {
@@ -162,10 +178,10 @@
   gap: 12px;
   padding: 0 1rem;
   cursor: pointer;
-  background-color: #ff0000;
-  color: #ffffff;
+  color: #ff0000;
+  //color: #ffffff;
   font-weight: 900;
-  transition: none;
+  transition: ease-in-out 150ms;
 
   .material-symbols-outlined {
     font-size: 32px;
@@ -181,6 +197,11 @@
     font-weight: 900;
     letter-spacing: 2px;
     font-size: 1.1rem;
+
+    &--logout {
+      color: red;
+      align-content: center;
+    }
   }
 
   &:hover {
@@ -196,7 +217,7 @@
   }
 }
 
-// When collapsed, center everything
+// When collapsed, center icons
 .sidebar.collapsed {
   .menu-item__content {
     justify-content: center;
@@ -206,5 +227,12 @@
   .logout-button {
     justify-content: center;
     padding: 0;
+    margin-top: auto;
   }
 }
+
+.sidebar__bottom {
+  margin-top: auto;
+  border-radius: 1rem;
+}
+

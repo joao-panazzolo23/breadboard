@@ -3,10 +3,10 @@
   --secondary: var(--white);
   --accent: var(--white);
   --bg: var(--white);
-
-
+  --danger: var(--red);
 }
 
+//passar isso aq pras variables de cor
 [data-theme="dark"] {
   --bg: #020617;
   --text: #f8fafc;

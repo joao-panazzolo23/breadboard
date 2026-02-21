@@ -1,52 +1,56 @@
 <aside class="sidebar" [class.collapsed]="!expanded">
-  <div class="sidebar__top" (click)="toggle.emit()">
-    <a class="material-symbols-outlined" >
-      {{ expanded ? 'menu_open' : 'menu' }}
-    </a>
-  </div>
+  <div class="sidebar-inside">
 
-  <ul class="menu">
-    @for (item of items; track item.route) {
-      <li class="menu-item" (click)="toggleItem(item)">
-        <div class="menu-item__content">
+    <div class="sidebar__top" (click)="toggle.emit()">
+      <a class="material-symbols-outlined">
+        {{ expanded ? 'menu_open' : 'menu' }}
+      </a>
+    </div>
+
+    <ul class="menu">
+      @for (item of items; track item.route) {
+        <li class="menu-item" (click)="toggleItem(item)">
+          <div class="menu-item__content">
           <span class="material-symbols-outlined">
             {{ item.icon }}
           </span>
 
-          @if (expanded) {
-            <span class="label">
+            @if (expanded) {
+              <span class="label">
               {{ item.label }}
             </span>
-          }
-        </div>
-
-        <!-- Item children -->
-        @if (item.children && item.expanded) {
-          <ul class="submenu">
-            @for (child of item.children; track child.route) {
-              <li class="submenu-item">
-                <a [routerLink]="child.route">
-                  {{ child.label }}
-                </a>
-              </li>
             }
-          </ul>
-        }
-      </li>
-    }
-  </ul>
+          </div>
 
-  <div class="sidebar__bottom">
-    <div class="logout-button" (click)="logout()">
+          <!--todo:  Item children -->
+          @if (item.children && item.expanded) {
+            <ul class="submenu">
+              @for (child of item.children; track child.route) {
+                <li class="submenu-item">
+                  <a class="label">
+                    {{ child.label }}
+                  </a>
+                </li>
+              }
+            </ul>
+          }
+        </li>
+      }
+    </ul>
+
+    <div class="sidebar__bottom">
+      <div class="logout-button" (click)="logout()">
       <span class="material-symbols-outlined">
         logout
       </span>
 
-      @if (expanded) {
-        <span class="label">
-          Sair
-        </span>
-      }
+        @if (expanded) {
+          <span class="label label--logout">
+            Sair
+          </span>
+        }
+      </div>
     </div>
+
   </div>
 </aside>
