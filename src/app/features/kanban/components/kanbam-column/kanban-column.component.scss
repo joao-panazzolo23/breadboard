@@ -1,15 +1,13 @@
 .kanban-column {
+  background-color: var(--secondary);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--secondary);
-  border: 4px solid var(--primary);
   width: 25rem;
   min-width: 20rem;
-  box-shadow: var(--shadow-hard);
-  border-radius: var(--radius);
-  scroll-behavior: smooth;
-  overflow-y: auto;
   max-height: 70vh;
 
   &__header {
@@ -34,7 +32,7 @@
     background-color: var(--primary);
     color: var(--secondary);
     padding: 0.25rem 0.75rem;
-    border: 3px solid #000000;
+    border: var(--border);
     min-width: 40px;
     text-align: center;
   }
@@ -92,6 +90,17 @@
     }
   }
 }
+
+.kanban-card__options-menu {
+  position: fixed;  // instead of absolute — escapes ALL parent overflow/transforms
+  z-index: 1000;
+  background: #fff;
+  border: 2px solid #000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 
 // Drop list active state
 .kanban-column__cards.cdk-drop-list-dragging {

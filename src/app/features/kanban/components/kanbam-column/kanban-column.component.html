@@ -15,6 +15,7 @@
     @for (card of column.cards; track card.id) {
       <app-kanban-card
         [card]="card"
+        (cardAction)="onCardAction($event)"
         cdkDrag>
       </app-kanban-card>
     }

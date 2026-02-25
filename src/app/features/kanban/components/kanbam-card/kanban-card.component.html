@@ -18,8 +18,22 @@
 
   <div class="kanban-card__footer">
     <span class="kanban-card__id">#{{ card.id }}</span>
-    <button class="kanban-card__action" type="button">
+    <button class="kanban-card__action" type="button" (click)="toggleCardOptions">
       <span class="material-symbols-outlined">more_horiz</span>
     </button>
   </div>
+
+  <!--
+  todo: options or maybe just use a delete button
+  @if (isOptionsOpen) {-->
+  <!--      <ul class="kanban-card__options-menu"-->
+  <!--          [style.top.px]="optionsPosition.top"-->
+  <!--          [style.left.px]="optionsPosition.left">-->
+  <!--      >-->
+  <!--        <li (click)="onAction('edit')"> Editar</li>-->
+  <!--        <li (click)="onAction('move')">Mover</li>-->
+  <!--        <li (click)="onAction('delete')">Excluir</li>-->
+  <!--      </ul>-->
+  <!--    }-->
+
 </div>

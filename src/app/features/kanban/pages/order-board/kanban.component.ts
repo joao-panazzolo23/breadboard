@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {KanbanColumnComponent} from '../kanbam-column/kanban-column.component';
-import {KanbanColumnInterface} from '../interfaces/kanban-column.interface';
-import {KanbanCard} from '../interfaces/kanban.card.interface';
+import {KanbanColumnComponent} from '../../components/kanbam-column/kanban-column.component';
+import {KanbanColumnInterface} from '../../interfaces/kanban-column.interface';
+import {KanbanCard} from '../../interfaces/kanban.card.interface';
 
 @Component({
   selector: 'app-kanban-board',
@@ -14,7 +14,7 @@ import {KanbanCard} from '../interfaces/kanban.card.interface';
 })
 export class KanbanBoardComponent {
 
-  //THIS WILL BE BRING FROM BACKEND
+  //THIS WILL BE RETRIEVED FROM BACKEND
   columns: KanbanColumnInterface[] = [
     {
       id: 'todo',

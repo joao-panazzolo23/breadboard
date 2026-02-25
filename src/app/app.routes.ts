@@ -32,13 +32,13 @@ export const routes: Routes = [
       {
         path: 'home',
         loadChildren: () =>
-          import('./features/home/routes/home-route')
+          import('./features/home/home-route')
             .then(m => m.HomeRoutes)
       },
       {
         path: 'orders',
         loadChildren: () =>
-          import('./features/kanban/routes/order-routes.module')
+          import('./features/kanban/order-routes.module')
             .then(m => m.OrderRoutesModule)
       }
     ]

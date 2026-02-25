@@ -1,17 +1,26 @@
 .kanban-card {
   overflow: hidden;
   background-color: var(--secondary);
-  border: 4px solid #000000;
+  border: var(--border);
   border-radius: var(--radius);
-  //border: 1px solid var(--border);
   padding: 0;
   cursor: grab;
   transition: all 200ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: var(--shadow-sm);
 
+  &__options-menu {
+    position: fixed; // instead of absolute — escapes ALL parent overflow/transforms
+    z-index: 1000;
+    background: #fff;
+    border: 2px solid #000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
   &:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 0 #000000;
+    box-shadow: var(--shadow);
   }
 
   &:active {
@@ -24,7 +33,7 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 1rem;
-    border-bottom: 3px solid #000000;
+    border-bottom: var(--border);
     gap: 0.5rem;
   }
 
@@ -33,7 +42,7 @@
     font-size: 1rem;
     font-weight: 700;
     margin: 0;
-    color: #000000;
+    color: var(--primary);
     text-transform: uppercase;
     letter-spacing: 1px;
     flex: 1;
@@ -72,7 +81,6 @@
     padding: 0.75rem 1rem;
     background-color: var(--accent);
     color: var(--secondary);
-
   }
 
   &__id {
@@ -97,10 +105,10 @@
       font-weight: 700;
     }
 
-    &:hover {
-      //background-color: #ffffff;
-      //color: #000000;
-    }
+    //&:hover {
+    //  //background-color: #ffffff;
+    //  //color: #000000;
+    //}
 
     &:active {
       transform: scale(0.95);
@@ -110,7 +118,7 @@
 
 // Dragging state
 .kanban-card.cdk-drag-dragging {
-  opacity: 0.8;
+  opacity: 0.3;
   cursor: grabbing;
   transform: rotate(-10deg);
 }
