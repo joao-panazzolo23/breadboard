@@ -54,14 +54,14 @@
   }
 
   &--warning {
-    color: var(--warning);
+    background-color: var(--warning);
   }
 
   &--accept {
-    color: var(--accept);
+    background-color: var(--accept);
   }
 
   &--edit {
-    color: var(--edit);
+    background-color: var(--edit);
   }
 }
