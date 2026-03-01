@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, input, output} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CdkDragDrop, DragDropModule} from '@angular/cdk/drag-drop';
 import {KanbanColumnInterface} from '../../interfaces/kanban-column.interface';
@@ -19,7 +19,7 @@ export class KanbanColumnComponent {
   cardDropped = output<CdkDragDrop<KanbanCard[]>>();
   cardAction = output<{ action: string; card: KanbanCard }>();
 
-  private optionsOpen: boolean = false;
+  // private optionsOpen: boolean = false;
 
   onDrop(event: CdkDragDrop<KanbanCard[]>) {
     this.cardDropped.emit(event);
@@ -28,5 +28,4 @@ export class KanbanColumnComponent {
   protected onCardAction(event: { action: string; card: KanbanCard }) {
     this.cardAction.emit(event);
   }
-
 }
