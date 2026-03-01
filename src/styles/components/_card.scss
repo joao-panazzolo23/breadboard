@@ -1,12 +1,12 @@
 .card {
   width: 100%;
-  max-width: 400px;
+  //max-width: 400px;
   border: 1px solid var(--primary);
   padding: 40px 30px;
   background-color: var(--secondary);
   box-shadow: var(--shadow);
   position: relative;
-  border-radius: 12px;
+  border-radius: var(--radius);
 
   &::before {
     content: '';

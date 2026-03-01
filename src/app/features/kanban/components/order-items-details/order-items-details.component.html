@@ -1,39 +1,81 @@
-<form class="order-items">
-  <header>
-    <h3> Selecione os produtos </h3>
-  </header>
+<fieldset>
+  <legend>Itens do pedido</legend>
 
-  <table class="table--items">
-    <thead>
-    <tr>
-      <th style="width:40%">Produto</th>
-      <th style="width:20%">Qtd</th>
-      <th style="width:20%">Preço Unit.</th>
-      <th style="width:15%; text-align:right; padding-right:1rem">Total</th>
-      <th style="width:5%"></th>
-    </tr>
-    </thead>
+  <!-- Search -->
+  <div class="search-bar">
+    <input
+      [(ngModel)]="search"
+      [ngModelOptions]="{standalone: true}"
+      placeholder="Buscar produto..."
+    />
+<!--    <button type="button" (click)="searchProduct()">Buscar</button>-->
+  </div>
 
-    <tbody>
-    <select formControlName="id" (change)="onProductSelect($index)">
-      <option value="" disabled>Selecione...</option>
-      @for (product of products(); track product.id) {
-        <option [value]="product.id">{{ product.name }}</option>
+  @if (foundProduct) {
+    <div class="product-preview">
+      <span>{{ foundProduct.name }} — R$ {{ foundProduct.price }}</span>
+      <button type="button" (click)="addItem()">+ Adicionar</button>
+    </div>
+  }
+
+  <!-- Items list -->
+  @for (item of itemsArray().controls; track $index) {
+    <div [formGroup]="asGroup($index)" class="item-row">
+      <span>{{ asGroup($index).get('id').value }}</span>
+
+      <input type="number" formControlName="quantity" />
+
+      @if (asGroup($index).get('quantity')?.invalid && asGroup($index).get('quantity')?.touched) {
+        <span class="error">Quantidade inválida</span>
       }
-    </select>
-    <td>
-      <input type="number" min="1" (change)="calculateTotal()">
-    </td>
-    <td>
-      <input type="text" placeholder="Valor do produto" (change)="calculateTotal()">
-    </td>
-    <td>
-      <input type="text" placeholder="Nome do produto" (change)="calculateTotal()">
-    </td>
-    </tbody>
+
+      <button type="button" (click)="removeItem($index)">Remover</button>
+    </div>
+  }
+
+  @if (itemsArray().length === 0) {
+    <p>Nenhum item adicionado.</p>
+  }
+</fieldset>
 
 
-  </table>
+
+<!--<form class="order-items">-->
+<!--  <header>-->
+<!--    <h3> Selecione os produtos </h3>-->
+<!--  </header>-->
+
+<!--  <table class="table&#45;&#45;items">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th style="width:40%">Produto</th>-->
+<!--      <th style="width:20%">Qtd</th>-->
+<!--      <th style="width:20%">Preço Unit.</th>-->
+<!--      <th style="width:15%; text-align:right; padding-right:1rem">Total</th>-->
+<!--      <th style="width:5%"></th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+
+<!--    <tbody>-->
+<!--    <select formControlName="id" (change)="onProductSelect($index)">-->
+<!--      <option value="" disabled>Selecione...</option>-->
+<!--      @for (product of products(); track product.id) {-->
+<!--        <option [value]="product.id">{{ product.name }}</option>-->
+<!--      }-->
+<!--    </select>-->
+<!--    <td>-->
+<!--      <input type="number" min="1" (change)="calculateTotal()">-->
+<!--    </td>-->
+<!--    <td>-->
+<!--      <input type="text" placeholder="Valor do produto" (change)="calculateTotal()">-->
+<!--    </td>-->
+<!--    <td>-->
+<!--      <input type="text" placeholder="Nome do produto" (change)="calculateTotal()">-->
+<!--    </td>-->
+<!--    </tbody>-->
 
 
-</form>
+<!--  </table>-->
+
+
+<!--</form>-->

@@ -1,33 +1,67 @@
-import {Component, inject} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {Component, inject, input, signal} from '@angular/core';
+import {
+  FormArray,
+  FormBuilder, FormsModule,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import {ProductService} from '../../services/product.service';
+import {Product} from '../../interfaces/product-interface';
 
 @Component({
   selector: 'app-order-items-details',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './order-items-details.component.html',
   styleUrl: './order-items-details.component.scss',
   standalone: true
 })
 export class OrderItemsDetailsComponent {
-  private search: string | null = null;
-  private productService = inject(ProductService)
-  protected products$ = this.productService.listAll(1, 5, this.search);
+  private fb = inject(FormBuilder);
+  protected search = signal('');
+  private productService = inject(ProductService);
+  itemsArray = input.required<FormArray>();
+  protected foundProduct: Product | null = null;
+  protected suggestions = signal<Product[]>([]);
+  showDropdown = signal(false);
 
-  protected calculateTotal() {
+  protected addItem() {
+    if (!this.foundProduct) return;
 
+    this.itemsArray().push(
+      this.fb.group({
+        id: [this.foundProduct.id, Validators.required],
+        name: [this.foundProduct.name, Validators.required],
+        quantity: [1, [Validators.required, Validators.min(1)]],
+        price: [this.foundProduct.price, Validators.required],
+      }));
+
+    this.search.set("");
+    this.foundProduct = null;
   }
 
+  asGroup(index: number) {
+    return this.itemsArray().at(index) as any;
+  }
 
-  // protected onProductSelect($index: Number) {
-  //   const control = this.items.at(index);
-  //   const selectedId = control.get('productId')?.value;
-  //   const product = this.products().find(p => p.id === selectedId);
-  //
-  //   if (product) {
-  //     control.patchValue({ price: product.price
-  //
-  //     }); // auto-fills price
-  //   }
-  //}
+  removeItem(index: number) {
+    this.itemsArray().removeAt(index);
+  }
+
+  onSearch(value: string) {
+    this.search.set(value);
+    if (value.length > 2) {
+      this.suggestions.set([])
+      this.showDropdown.set(true);
+      return;
+    }
+
+    this.productService.listByName(value).subscribe(products => {
+      this.suggestions.set(products);
+      this.showDropdown.set(true);
+    })
+
+    this.search.set('');
+    this.suggestions.set([]);
+    this.showDropdown.set(false);
+  }
 }

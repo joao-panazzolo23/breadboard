@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {KanbanColumnComponent} from '../../components/kanbam-column/kanban-column.component';
 import {KanbanColumnInterface} from '../../interfaces/kanban-column.interface';
 import {KanbanCard} from '../../interfaces/kanban.card.interface';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-kanban-board',
@@ -13,7 +14,7 @@ import {KanbanCard} from '../../interfaces/kanban.card.interface';
   styleUrl: './kanban.component.scss',
 })
 export class KanbanBoardComponent {
-
+  private router = inject(Router);
   //THIS WILL BE RETRIEVED FROM BACKEND
   columns: KanbanColumnInterface[] = [
     {
@@ -64,5 +65,12 @@ export class KanbanBoardComponent {
 
   getConnectedLists(): string[] {
     return this.columns.map(column => column.id);
+  }
+
+  protected goToDetails(id: string | null = null) {
+    this.router.navigate(['orders/details'], {
+        queryParams: {orderId: id}
+      }
+    );
   }
 }

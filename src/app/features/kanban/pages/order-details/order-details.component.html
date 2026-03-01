@@ -3,9 +3,13 @@
 </header>
 
 <form [formGroup]="orderForm">
-  <app-order-items-details>
+  <app-order-customer [customerGroup]="customerForm"></app-order-customer>
+<!--  <app-order-address [addressGroup]="addressForm"></app-order-address>-->
+<!--  <app-order-items-details [itemsArray]="itemsForm"></app-order-items-details>-->
 
-  </app-order-items-details>
+  <button class="btn btn--accept" (click)="saveOrder()">
+    Salvar pedido
+  </button>
 </form>
 
 

@@ -22,4 +22,9 @@ export class ProductService {
   public getById(id: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}/products/${id}`);
   }
+
+  public listByName(name: string): Observable<Product[]> {
+    //todo: better by route or query?
+    return this.http.get<Product[]>(`${this.url}/products/${name}`);
+  }
 }
