@@ -1,9 +1,10 @@
-<fieldset>
+<fieldset class="card">
     <legend>Itens do pedido</legend>
 
     <!-- Search -->
-    <div class="search-bar">
-        <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" placeholder="Buscar produto..." />
+    <div class="input-group">
+        <input class="input-text" [(ngModel)]="search" [ngModelOptions]="{standalone: true}"
+            placeholder="Buscar produto..." />
         <!--    <button type="button" (click)="searchProduct()">Buscar</button>-->
     </div>
 
@@ -18,7 +19,7 @@
     <div [formGroup]="asGroup($index)" class="item-row">
         <span>{{ asGroup($index).get('id').value }}</span>
 
-        <input type="number" formControlName="quantity" />
+        <input class="input-text" type="number" formControlName="quantity" />
 
         @if (asGroup($index).get('quantity')?.invalid && asGroup($index).get('quantity')?.touched) {
         <span class="error">Quantidade inválida</span>

@@ -1,22 +1,35 @@
-<form formGroupName="addressGroup">
+@let isNeighbourhoodValid = this.isFieldInvalid('neighbourhood');
+@let isStreetValid = this.isFieldInvalid('street');
+@let isNumberValid = this.isFieldInvalid('number');
+
+<form [formGroup]="addressGroup()">
     <div class="card">
-        <div class="input-group" formControlName="neighbourhood">
+        <div class="input-group">
             <label>Bairro </label>
-            <input type="text" class="input-text">
+            <input type="text" class="input-text" formControlName="neighbourhood">
+            @if(isNeighbourhoodValid){
+            <p class="error-text"> O bairro eh obrigatorio </p>
+            }
         </div>
 
-        <div class="input-group" formControlName="street">
+        <div class="input-group">
             <label>Rua</label>
-            <input type="text" class="input-text">
+            <input type="text" class="input-text" formControlName="street">
+            @if(isStreetValid){
+            <p class="error-text"> A rua eh obrigatoria </p>
+            }
         </div>
 
-        <div class="input-group" formControlName="number">
+        <div class="input-group">
             <label>Numero</label>
-            <input type="number" class="input-text">
+            <input type="number" class="input-text" formControlName="number">
+            @if(isNumberValid){
+            <p class="error-text"> O bairro eh obrigatorio </p>
+            }
         </div>
-        <div class="input-group" formControlName="reference">
+        <div class="input-group">
             <label>Referencia</label>
-            <textarea class="input-text"></textarea>
+            <textarea class="input-text" formControlName="reference"></textarea>
         </div>
     </div>
 </form>

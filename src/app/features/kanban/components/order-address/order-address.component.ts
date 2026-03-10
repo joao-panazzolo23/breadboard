@@ -11,9 +11,9 @@ import { FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@an
 export class OrderAddressComponent {
     addressGroup = input.required<FormGroup>();
 
-    protected isFieldInvalid(fieldName: string): boolean {
-        const control = this.addressGroup().get(fieldName)
+    protected isFieldInvalid(field: string): boolean {
+        const control = this.addressGroup().get(field);
         if (control == null) return false;
-        return control.invalid && control.touched
+        return (control.touched && control.invalid);
     }
 }

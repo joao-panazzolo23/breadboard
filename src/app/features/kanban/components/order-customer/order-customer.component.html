@@ -1,5 +1,5 @@
 @let isNameInvalid = this.isFieldInvalid("name");
-@let isPhoneInvalid = this.isFieldInvalid("phone");
+@let isPhoneInvalid = this.isFieldInvalid("phoneNumber");
 @let isEmailInvalid = this.isFieldInvalid("email");
 
 <form [formGroup]="customerGroup()">
@@ -12,15 +12,15 @@
             <label> Nome do cliente </label>
             <input type="text" class="input-text" formControlName="name" [class.invalid]=isNameInvalid>
             @if (isNameInvalid) {
-            <p> O nome eh obrigatorio </p>
+            <p class="error-text"> O nome eh obrigatorio </p>
             }
         </div>
 
         <div class="input-group">
             <label> Telefone </label>
-            <input type="text" class="input-text" formControlName="phone" [class.invalid]="isPhoneInvalid">
+            <input type="text" class="input-text" formControlName="phoneNumber" [class.invalid]="isPhoneInvalid">
             @if (isPhoneInvalid) {
-            Pelo menos um meio de contato eh necessario
+            <p class="error-text"> Pelo menos um meio de contato eh necessario </p>
             }
         </div>
 
