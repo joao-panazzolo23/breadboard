@@ -1,16 +1,35 @@
-<div class="card">
-  <header>
-    <h1> Informacoes do cliente</h1>
-  </header>
+@let isNameInvalid = this.isFieldInvalid("name");
+@let isPhoneInvalid = this.isFieldInvalid("phone");
+@let isEmailInvalid = this.isFieldInvalid("email");
 
-  <div class="input-group">
-    <label> Nome do cliente </label>
-    <input type="text" class="input-text">
-  </div>
+<form [formGroup]="customerGroup()">
+    <div class="card board">
+        <header>
+            <h1> Informacoes do cliente</h1>
+        </header>
 
-  <div class="input-group">
-    <label> Telefone </label>
-    <input type="text" class="input-text">
-  </div>
+        <div class="input-group">
+            <label> Nome do cliente </label>
+            <input type="text" class="input-text" formControlName="name" [class.invalid]=isNameInvalid>
+            @if (isNameInvalid) {
+            <p> O nome eh obrigatorio </p>
+            }
+        </div>
 
-</div>
+        <div class="input-group">
+            <label> Telefone </label>
+            <input type="text" class="input-text" formControlName="phone" [class.invalid]="isPhoneInvalid">
+            @if (isPhoneInvalid) {
+            Pelo menos um meio de contato eh necessario
+            }
+        </div>
+
+        <div class="input-group">
+            <label> Email </label>
+            <input type="text" class="input-text" formControlName="email" [class.invalid]="isPhoneInvalid">
+            @if (isEmailInvalid) {
+            <p> Email invalido! </p>
+            }
+        </div>
+    </div>
+</form>

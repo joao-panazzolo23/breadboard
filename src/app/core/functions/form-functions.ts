@@ -8,3 +8,13 @@ export function minArrayLength(min: number) {
     return null;
   };
 }
+
+export function phoneValidator(control: AbstractControl): ValidationErrors | null {
+  if (!control.value) return null;
+
+  const cleaned = control.value.replace(/[\s\-\(\)]/g, '');
+
+  const valid = /^(\+55)?[1-9]{2}9?[0-9]{8}$/.test(cleaned);
+
+  return valid ? null : { invalidPhone: true };
+}

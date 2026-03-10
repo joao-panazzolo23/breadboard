@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../interfaces/product-interface';
+import {Router, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-order-items-details',

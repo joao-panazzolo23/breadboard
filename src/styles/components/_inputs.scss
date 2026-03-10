@@ -9,14 +9,10 @@
   border-radius: 0.5rem;
 
   &:focus {
-    box-shadow: 4px 4px 0px var(--primary);
+    box-shadow: 4px 4px 0 var(--danger);
   }
 
-  &.invalid {
-    border: 1px solid #ff4d4f;
-    box-shadow: 4px 4px 0px var(--error);
+  &:focus:not(.invalid) {
+    box-shadow: 4px 4px 0 var(--primary);
   }
 }
-
-
-

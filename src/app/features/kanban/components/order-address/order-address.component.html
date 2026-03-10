@@ -1,1 +1,22 @@
-<p>order-address works!</p>
+<form formGroupName="addressGroup">
+    <div class="card">
+        <div class="input-group" formControlName="neighbourhood">
+            <label>Bairro </label>
+            <input type="text" class="input-text">
+        </div>
+
+        <div class="input-group" formControlName="street">
+            <label>Rua</label>
+            <input type="text" class="input-text">
+        </div>
+
+        <div class="input-group" formControlName="number">
+            <label>Numero</label>
+            <input type="number" class="input-text">
+        </div>
+        <div class="input-group" formControlName="reference">
+            <label>Referencia</label>
+            <textarea class="input-text"></textarea>
+        </div>
+    </div>
+</form>

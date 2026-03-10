@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth-service';
 import {Router} from '@angular/router';
@@ -14,16 +14,10 @@ import {Router} from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  protected loginForm!: FormGroup;
-
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService,
-  ) {
-
-    this.loginForm = this.createLoginForm();
-  }
+  protected loginForm: FormGroup = this.createLoginForm();
+  private fb = inject(FormBuilder)
+  private router = inject(Router)
+  private authService = inject(AuthService)
 
   createLoginForm() {
     return this.fb.nonNullable.group({
