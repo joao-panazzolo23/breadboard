@@ -1,20 +1,20 @@
-import {Component, inject, input, signal} from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import {
   FormArray,
-  FormBuilder, FormsModule,
+  FormBuilder,
+  FormsModule,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
-import {ProductService} from '../../services/product.service';
-import {Product} from '../../interfaces/product-interface';
-import {Router, RouterModule} from '@angular/router';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../interfaces/product-interface';
 
 @Component({
   selector: 'app-order-items-details',
   imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './order-items-details.component.html',
   styleUrl: './order-items-details.component.scss',
-  standalone: true
+  standalone: true,
 })
 export class OrderItemsDetailsComponent {
   private fb = inject(FormBuilder);
@@ -34,14 +34,22 @@ export class OrderItemsDetailsComponent {
         name: [this.foundProduct.name, Validators.required],
         quantity: [1, [Validators.required, Validators.min(1)]],
         price: [this.foundProduct.price, Validators.required],
-      }));
+      }),
+    );
 
-    this.search.set("");
+    this.search.set('');
     this.foundProduct = null;
   }
 
   asGroup(index: number) {
     return this.itemsArray().at(index) as any;
+  }
+
+  isFieldValid(index: number, field: string) {
+    return (
+      this.asGroup(index).get(field)?.invalid &&
+      this.asGroup(index).get(field)?.touched
+    );
   }
 
   removeItem(index: number) {
@@ -51,15 +59,15 @@ export class OrderItemsDetailsComponent {
   onSearch(value: string) {
     this.search.set(value);
     if (value.length > 2) {
-      this.suggestions.set([])
+      this.suggestions.set([]);
       this.showDropdown.set(true);
       return;
     }
 
-    this.productService.listByName(value).subscribe(products => {
+    this.productService.listByName(value).subscribe((products) => {
       this.suggestions.set(products);
       this.showDropdown.set(true);
-    })
+    });
 
     this.search.set('');
     this.suggestions.set([]);

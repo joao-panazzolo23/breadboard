@@ -16,16 +16,15 @@
     }
 
     @for (item of itemsArray().controls; track $index) {
+    @let isQuantityValid = isFieldValid($index, 'quantity');
     <div [formGroup]="asGroup($index)" class="item-row">
         <span>{{ asGroup($index).get('id').value }}</span>
 
         <input class="input-text" type="number" formControlName="quantity" />
-
-        @if (asGroup($index).get('quantity')?.invalid && asGroup($index).get('quantity')?.touched) {
+        @if (isQuantityValid) {
         <span class="error">Quantidade inválida</span>
         }
-
-        <button type="button" (click)="removeItem($index)">Remover</button>
+        <button class="btn btn__danger" (click)="removeItem($index)">Remover</button>
     </div>
     }
 
