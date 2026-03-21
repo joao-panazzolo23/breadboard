@@ -1,10 +1,15 @@
-import {Component, inject} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {KanbanColumnComponent} from '../../components/kanbam-column/kanban-column.component';
-import {KanbanColumnInterface} from '../../interfaces/kanban-column.interface';
-import {KanbanCard} from '../../interfaces/kanban.card.interface';
-import {Router} from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+import { KanbanColumnComponent } from '../../components/kanbam-column/kanban-column.component';
+import { KanbanColumnInterface } from '../../interfaces/kanban-column.interface';
+import { KanbanCard } from '../../interfaces/kanban.card.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kanban-board',
@@ -21,38 +26,77 @@ export class KanbanBoardComponent {
       id: 'todo',
       title: 'ORCAMENTO',
       cards: [
-        {id: '1', title: 'Task 1', description: 'Description 1', priority: 'high'},
-        {id: '2', title: 'Task 2', description: 'Description 2', priority: 'medium'},
-        {id: '3', title: 'Task 3', description: 'Description 3', priority: 'low'},
-      ]
+        {
+          id: '1',
+          title: 'Task 1',
+          description: 'Description 1',
+          priority: 'high',
+        },
+        {
+          id: '2',
+          title: 'Task 2',
+          description: 'Description 2',
+          priority: 'medium',
+        },
+        {
+          id: '3',
+          title: 'Task 3',
+          description: 'Description 3',
+          priority: 'low',
+        },
+      ],
     },
     {
       id: 'inprogress',
       title: 'A FAZER',
       cards: [
-        {id: '4', title: 'Task 4', description: 'Description 4', priority: 'high'},
-      ]
+        {
+          id: '4',
+          title: 'Task 4',
+          description: 'Description 4',
+          priority: 'high',
+        },
+      ],
     },
     {
       id: 'review',
       title: 'PAGO',
       cards: [
-        {id: '5', title: 'Task 5', description: 'Description 5', priority: 'medium'},
-      ]
+        {
+          id: '5',
+          title: 'Task 5',
+          description: 'Description 5',
+          priority: 'medium',
+        },
+      ],
     },
     {
       id: 'done',
       title: 'CONCLUÍDO',
       cards: [
-        {id: '6', title: 'Task 6', description: 'Description 6', priority: 'low'},
-        {id: '7', title: 'Task 7', description: 'Description 7', priority: 'medium'},
-      ]
-    }
+        {
+          id: '6',
+          title: 'Task 6',
+          description: 'Description 6',
+          priority: 'low',
+        },
+        {
+          id: '7',
+          title: 'Task 7',
+          description: 'Description 7',
+          priority: 'medium',
+        },
+      ],
+    },
   ];
 
   drop(event: CdkDragDrop<KanbanCard[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -64,13 +108,12 @@ export class KanbanBoardComponent {
   }
 
   getConnectedLists(): string[] {
-    return this.columns.map(column => column.id);
+    return this.columns.map((column) => column.id);
   }
 
   protected goToDetails(id: string | null = null) {
     this.router.navigate(['orders/details'], {
-        queryParams: {orderId: id}
-      }
-    );
+      queryParams: { orderId: id },
+    });
   }
 }

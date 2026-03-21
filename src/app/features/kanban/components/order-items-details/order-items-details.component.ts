@@ -2,12 +2,14 @@ import { Component, inject, input, signal } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
+  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
-import { Product } from '../../interfaces/product-interface';
+import { OrderProduct } from '../../interfaces/product-interface';
+import { ControlsOf } from '../../../../shared/types/forms.types';
 
 @Component({
   selector: 'app-order-items-details',
@@ -20,22 +22,21 @@ export class OrderItemsDetailsComponent {
   private fb = inject(FormBuilder);
   protected search = signal('');
   private productService = inject(ProductService);
-  itemsArray = input.required<FormArray>();
-  protected foundProduct: Product | null = null;
-  protected suggestions = signal<Product[]>([]);
+  itemsArray = input.required<FormArray<FormGroup<ControlsOf<OrderProduct>>>>();
+  protected foundProduct: OrderProduct | null = null;
+  protected suggestions = signal<OrderProduct[]>([]);
   showDropdown = signal(false);
 
   protected addItem() {
     if (!this.foundProduct) return;
 
-    this.itemsArray().push(
-      this.fb.group({
-        id: [this.foundProduct.id, Validators.required],
-        name: [this.foundProduct.name, Validators.required],
-        quantity: [1, [Validators.required, Validators.min(1)]],
-        price: [this.foundProduct.price, Validators.required],
-      }),
-    );
+    this.fb.group({
+      id: [this.foundProduct.id, Validators.required],
+      name: [this.foundProduct.name, Validators.required],
+      quantity: [1, [Validators.required, Validators.min(1)]],
+      price: [this.foundProduct.price, Validators.required],
+      code: [this.foundProduct.code, Validators.required],
+    });
 
     this.search.set('');
     this.foundProduct = null;

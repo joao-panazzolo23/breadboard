@@ -1,26 +1,27 @@
-@let isNameInvalid = this.isFieldInvalid("name");
-@let isPhoneInvalid = this.isFieldInvalid("phoneNumber");
-@let isEmailInvalid = this.isFieldInvalid("email");
+@let isEmailInvalid = customerGroup().controls.email.invalid;
+@let isPhoneInvalid = customerGroup().controls.phoneNumber.invalid;
+@let isNameInvalid = customerGroup().controls.name.invalid;
 
 <form [formGroup]="customerGroup()">
     <div class="card board">
         <header>
-            <h1> Informacoes do cliente</h1>
+            <h1> Informações do cliente </h1>
         </header>
 
         <div class="input-group">
             <label> Nome do cliente </label>
-            <input type="text" class="input-text" formControlName="name" [class.invalid]=isNameInvalid>
+            <input type="text" class="input-text" [formControl]="customerGroup().controls.name"
+                [class.invalid]="customerGroup().controls.name.invalid">
             @if (isNameInvalid) {
-            <p class="error-text"> O nome eh obrigatorio </p>
+            <p class="error-text"> O nome é obrigatorio </p>
             }
         </div>
-
         <div class="input-group">
             <label> Telefone </label>
-            <input type="text" class="input-text" formControlName="phoneNumber" [class.invalid]="isPhoneInvalid">
+            <input type="text" class="input-text" [formControl]="customerGroup().controls.name"
+                [class.invalid]="isPhoneInvalid">
             @if (isPhoneInvalid) {
-            <p class="error-text"> Pelo menos um meio de contato eh necessario </p>
+            <p class="error-text"> Pelo menos um meio de contato é necessário </p>
             }
         </div>
 
